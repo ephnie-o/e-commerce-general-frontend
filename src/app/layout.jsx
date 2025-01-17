@@ -1,4 +1,8 @@
+import Footer from "@/components/ui/Footer";
+import NavBar from "@/components/ui/NavBar";
 import localFont from "next/font/local";
+import ClientWrapper from "../context/ClientWrapper";
+import { ToastContainer } from 'react-toastify';
 import "./globals.css";
 
 const geistSans = localFont({
@@ -18,12 +22,18 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ClientWrapper>
+          <NavBar />
+          <ToastContainer />
+          {children}
+          <Footer />
+        </ClientWrapper>
       </body>
     </html>
   );
