@@ -21,10 +21,12 @@ const UserProfilePage = () => {
       setOrderItems(res.data.items)
       setLoading(false)
     })
-    .catch(err => {
-      console.log(err.message)
-      setLoading(false)
+    .catch(() => {
+      alert("Failed to load user information. Please try again.");
     })
+    .finally(() => {
+      setLoading(false);
+    });
   }, [])
 
   if(loading) {

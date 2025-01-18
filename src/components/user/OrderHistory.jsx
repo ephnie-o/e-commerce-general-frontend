@@ -11,6 +11,14 @@ export default function OrderHistory({orderItems}) {
     return acc;
   }, {});
 
+  if (!orderItems.length) {
+    return (
+      <div className="text-center py-20">
+        <p className="text-gray-600">No orders found.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-gray-100">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:pb-24">
