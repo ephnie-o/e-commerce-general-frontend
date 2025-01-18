@@ -4,6 +4,7 @@ const nextConfig = {
     env: {
     NEXT_BASE_URL: process.env.NEXT_BASE_URL,
   },
+  basePath: '/'
 };
 
 export default nextConfig;
