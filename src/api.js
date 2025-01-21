@@ -8,7 +8,8 @@ export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://127.0.0.1:80
 console.log("Base URL:", BASE_URL);
 
 const api = axios.create({
-    baseURL: BASE_URL
+    baseURL: BASE_URL,
+    withCredentials: true,
 })
 
 api.interceptors.request.use(
