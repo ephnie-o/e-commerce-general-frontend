@@ -8,12 +8,9 @@ const UserInfo = ({userInfo}) => {
       <h1 className="text-2xl font-semibold text-gray-900">User Profile</h1>
       <div className="mt-4 space-y-4">
         <div className="flex items-center gap-4">
-          <Image
-            src={pic}
+          <img
+            src="/ecommercephoto.jpg"
             alt="User Picture"
-            width={64}
-            height={64}
-            priority
             className="w-16 h-16 rounded-full object-cover"
           />
           <p className="text-lg font-semibold text-gray-900">{`${userInfo.first_name} ${userInfo.last_name}`}</p>
