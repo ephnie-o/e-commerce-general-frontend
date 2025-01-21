@@ -7,7 +7,7 @@ import PaymentSection from './PaymentSection'
 
 const CheckoutPage = () => {
 
-  const {cartItems, cartCode, setCartItems, cartTotal, setCartTotal, loading, tax} = useCartData()
+  const {cartItems, cartTotal, tax} = useCartData()
 
   return (
     <main className="bg-gray-100 px-4 pb-16 pt-4 sm:px-6 sm:pb-24 sm:pt-8 lg:px-8 xl:px-2 xl:pt-14">

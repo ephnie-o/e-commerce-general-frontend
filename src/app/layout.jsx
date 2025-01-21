@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
         <ClientWrapper>
           <NavBar />
           <ToastContainer />
-          {children}
+          <main>{children}</main>
           <Footer />
         </ClientWrapper>
       </body>

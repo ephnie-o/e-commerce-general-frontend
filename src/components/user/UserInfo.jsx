@@ -1,4 +1,4 @@
-import pic from '../../assets/images/ecommercephoto.jpg'
+import pic from '../../../public/ecommercephoto.jpg'
 import Image from 'next/image';
 
 
@@ -13,6 +13,7 @@ const UserInfo = ({userInfo}) => {
             alt="User Picture"
             width={64}
             height={64}
+            priority
             className="w-16 h-16 rounded-full object-cover"
           />
           <p className="text-lg font-semibold text-gray-900">{`${userInfo.first_name} ${userInfo.last_name}`}</p>

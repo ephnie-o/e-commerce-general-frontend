@@ -16,7 +16,7 @@ const CartPage = () => {
     return <Spinner loading={loading} />
   }
 
-  if(cartItems.length < 1) {
+  if(cartItems.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-screen bg-gray-100 text-gray-700">
             <h2 className="text-2xl font-bold">Your Cart is Empty</h2>

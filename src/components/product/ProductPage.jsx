@@ -33,8 +33,8 @@ const ProductPage = () => {
 
 
     useEffect(() => {
-      if(product.id){
-        api.get(`product_in_cart?cart_code=${cartCode}&product_id=${product.id}`)
+      if(product?.id){
+        api.get(`cart/product_in_cart/?cart_code=${cartCode}&product_id=${product.id}`)
       .then(res => {
         console.log(res.data)
         setInCart(res.data.product_in_cart)
@@ -43,7 +43,7 @@ const ProductPage = () => {
         console.log(err.message)
       })
       }
-    }, [cartCode, product.id])
+    }, [cartCode, product?.id])
 
     useEffect(() => {
         const storedCartCode = localStorage.getItem("cart_code");
@@ -53,7 +53,7 @@ const ProductPage = () => {
     const newItem = {cart_code: cartCode, product_id:product.id}
 
     function add_item() {
-        api.post("add_item/", newItem)
+        api.post("cart/add_item/", newItem)
         .then(res => {
             console.log(res.data)
             setInCart(true)

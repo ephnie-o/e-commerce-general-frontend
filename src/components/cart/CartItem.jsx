@@ -20,16 +20,15 @@ const CartItem = ({item, setCartTotal, cartItems, setCartItems}) => {
         const confirmDelete = window.confirm("Are you sure you want to delete this cart item")
 
         if(confirmDelete){
-            api.post("delete_cartitem/", itemID)
+            api.post("cart/delete_item/", itemID)
             .then(res => {
                 console.log(res.data)
                 toast.success("Cart item deleted succesfully")
-                setCartItems(cartItems.filter(cartitem => cartitem.id != item.id))
-                setCartTotal(cartItems.filter(cartitem => cartitem.id != item.id)
-                .reduce((acc, curr) => acc + curr.total, 0)
+                const updatedItems = cartItems.filter(cartitem => cartitem.id !== item.id);
+                setCartItems(updatedItems)
+                setCartTotal(updatedItems.reduce((acc, curr) => acc + curr.total, 0)
                 )
-                setNumCartItems(cartItems.filter(cartitem => cartitem.id != item.id)
-                .reduce((acc, curr) => acc + curr.quantity, 0)
+                setNumCartItems(updatedItems.reduce((acc, curr) => acc + curr.quantity, 0)
                 )
             })
             .catch(err => {
@@ -41,16 +40,17 @@ const CartItem = ({item, setCartTotal, cartItems, setCartItems}) => {
 
     function updateCartitem() {
         setloading(true)
-        api.patch("update_quantity/", itemData)
+        api.patch("cart/update_item/", itemData)
         .then(res => {
             console.log(res.data)
             setloading(false)
             toast.success("Cart item updated successfully")
-            setCartTotal(cartItems.map(cartitem => cartitem.id === item.id ? res.data.data : cartitem)
-            .reduce((acc, curr) => acc + curr.total, 0)
+            const updatedItems = cartItems.map(cartitem =>
+                cartitem.id === item.id ? res.data.data : cartitem
+            );
+            setCartTotal(updatedItems.reduce((acc, curr) => acc + curr.total, 0)
             )
-            setNumCartItems(cartItems.map((cartitem) => cartitem.id === item.id ? res.data.data : cartitem)
-            .reduce((acc, curr) => acc + curr.quantity, 0)
+            setNumCartItems(updatedItems.reduce((acc, curr) => acc + curr.quantity, 0)
             )
         })
         .catch(err =>{

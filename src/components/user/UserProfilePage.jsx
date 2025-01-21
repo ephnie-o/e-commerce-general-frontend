@@ -14,7 +14,7 @@ const UserProfilePage = () => {
 
   useEffect(() => {
     setLoading(true)
-    api.get("user_info")
+    api.get("user/info/")
     .then(res => {
       console.log(res.data)
       setUserInfo(res.data)

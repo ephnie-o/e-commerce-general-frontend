@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useState, useEffect } from "react"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useSearchParams } from "next/navigation"
 import api from "@/api"
 import { useCart } from "@/context/CartContext"
 
@@ -10,8 +10,7 @@ const PaymentStatusPage = () => {
 
     const [statusMessage, setStatusMessage] = useState('Verifying your payment!')
     const [statusSubMessage, setStatusSubMessage] = useState('Wait a moment, your payment is being verified...')
-    const router = useRouter()
-    const {numCartItems, setNumCartItems} = useCart();
+    const {setNumCartItems} = useCart();
     const queryParams = useSearchParams()
 
     useEffect(() => {
@@ -20,7 +19,7 @@ const PaymentStatusPage = () => {
         const transactionId = queryParams.get('transaction_id');
 
         if (status && txRef && transactionId) {
-            api.post(`payment_callback/?status=${status}&tx_ref=${txRef}&transaction_id=${transactionId}`)
+            api.post(`payment/payment_callback/?status=${status}&tx_ref=${txRef}&transaction_id=${transactionId}`)
             .then(res => {
                 setStatusMessage(res.data.message)
                 setStatusSubMessage(res.data.subMessage)
@@ -29,6 +28,8 @@ const PaymentStatusPage = () => {
             })
             .catch(err => {
                 console.log(err.message)
+                setStatusMessage("Payment Verification Failed!");
+                setStatusSubMessage("Please try again or contact support.");
             })
         }
 

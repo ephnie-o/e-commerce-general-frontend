@@ -11,13 +11,15 @@ const PaymentSection = () => {
   const [loading, setLoading] = useState(false)
 
   function makePayment() {
-    api.post("initiate_payment/", {cart_code})
+    setLoading(true)
+    api.post("payment/initiate_payment/", {cart_code})
     .then(res => {
       console.log(res.data)
       window.location.href = res.data.data.link
     })
     .catch(err => {
       console.log(err.message)
+      setLoading(false)
     })
   }
 

@@ -21,7 +21,7 @@ export default function NavBar() {
 
   useEffect(() => {
     if(cartCode){
-      api.get(`get_cart_stat?cart_code=${cartCode}`)
+      api.get(`cart/cart_stats/?cart_code=${cartCode}`)
       .then(res => {
         console.log(res.data)
         setNumCartItems(res.data.num_of_items)

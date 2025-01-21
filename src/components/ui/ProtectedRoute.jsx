@@ -13,11 +13,6 @@ const ProtectedRoute = ({children}) => {
     const router = useRouter();
     const pathname = usePathname()
 
-
-    // useEffect(() => {
-    //   auth().catch(() => setIsAuthorized(false))
-    // }, [])
-
     useEffect(() => {
         async function auth() {
             const token = localStorage.getItem("access")

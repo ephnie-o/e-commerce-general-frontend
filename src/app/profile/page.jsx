@@ -1,8 +1,11 @@
+import ProtectedRoute from '@/components/ui/ProtectedRoute'
 import UserProfilePage from '@/components/user/UserProfilePage'
 
 const page = () => {
   return (
-    <UserProfilePage />
+    <ProtectedRoute>
+      <UserProfilePage />
+    </ProtectedRoute>
   )
 }
 
