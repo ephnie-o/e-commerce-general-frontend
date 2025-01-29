@@ -25,7 +25,7 @@ const UserInfo = ({userInfo}) => {
         </div>
         <div>
           <p className="text-sm font-medium text-gray-600">Phone Number:</p>
-          <p className="text-lg font-semibold text-gray-900">+{userInfo.phone}</p>
+          <p className="text-lg font-semibold text-gray-900">{userInfo.phone}</p>
         </div>
         <div>
           <p className="text-sm font-medium text-gray-600">City:</p>

@@ -9,7 +9,7 @@ console.log("Base URL:", BASE_URL);
 
 const api = axios.create({
     baseURL: BASE_URL,
-    withCredentials: true,
+    // withCredentials: true,
 })
 
 api.interceptors.request.use(

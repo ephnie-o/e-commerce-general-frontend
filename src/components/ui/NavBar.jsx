@@ -82,9 +82,9 @@ export default function NavBar() {
               Log in
             </Link>
             <Link
-              href="#"
+              href="/signup"
               className={`rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 ${
-                isActive('/signup') ? 'bg-white text-gray-900' : 'bg-indigo-600'
+                isActive('/signup') ? 'bg-gray-950 text-gray-900' : 'bg-indigo-600'
               }`}
             >
               Sign up

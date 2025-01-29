@@ -1,4 +1,4 @@
-import Card from "../home/Card"
+import Card from "../products/Card"
 
 const RelatedProducts = ({products}) => {
     return (
