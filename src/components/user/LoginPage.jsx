@@ -8,17 +8,18 @@ import { useState, useContext } from "react"
 
 const LoginPage = () => {
 
-    const {setIsAuthenticated, get_username} = useContext(AuthContext)
+    const {setIsAuthenticated, get_username, get_email} = useContext(AuthContext)
 
     const router = useRouter()
     const searchParams = useSearchParams()
     const redirect = searchParams.get("redirect") || "/";
     const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
 
-    const userInfo = {username, password}
+    const userInfo = {email, password}
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -30,10 +31,12 @@ const LoginPage = () => {
             localStorage.setItem("access", res.data.access)
             localStorage.setItem("refresh", res.data.refresh)
             setUsername("")
+            setEmail("")
             setPassword("")
             setLoading(false)
             setIsAuthenticated(true)
             get_username()
+            get_email()
             setError("")
             console.log("Redirecting to: ", redirect);
             router.push(redirect)
@@ -63,18 +66,18 @@ const LoginPage = () => {
               <div>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="username" className="block text-sm/6 font-medium text-gray-900">
-                      Username
+                    <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
+                      Email
                     </label>
                     <div className="mt-2">
                       <input
                         id="username"
-                        name="username"
+                        name="email"
                         type="text"
                         required
-                        value={username}
+                        value={email}
                         // autoComplete={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                       />
                     </div>

@@ -10,6 +10,7 @@ export function AuthProvider({children}) {
 
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
 
     const handleAuth = () => {
         const token = localStorage.getItem("access")
@@ -37,13 +38,24 @@ export function AuthProvider({children}) {
         })
     }
 
+    function get_email() {
+        api.get("user/email/")
+        .then(res => {
+            setEmail(res.data.email)
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
+    }
+
     useEffect(() => {
       handleAuth()
       get_username()
+      get_email()
     }, [])
 
 
-    const authValue = {isAuthenticated, username, setIsAuthenticated, get_username}
+    const authValue = {isAuthenticated, username, setIsAuthenticated, get_username, email, get_email}
 
     return <AuthContext.Provider value={authValue}>
         {children}

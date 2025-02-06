@@ -13,7 +13,7 @@ const SignUpPage = () => {
     first_name: "",
     last_name: "",
     city: "",
-    state: "",
+    country: "",
     address: "",
     password: "",
     confirm_password: "",
@@ -22,6 +22,7 @@ const SignUpPage = () => {
   const router = useRouter()
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false)
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,6 +32,7 @@ const SignUpPage = () => {
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true)
+    setSuccessMessage("");
 
     if (formData.password.length < 8) {
       setError("Password must be at least 8 characters long.");
@@ -54,13 +56,17 @@ const SignUpPage = () => {
         first_name: "",
         last_name: "",
         city: "",
-        state: "",
+        country: "",
         address: "",
         password: "",
         confirm_password: "",
       });
       setLoading(false)
-      router.push("/login")
+      setSuccessMessage(res.data.message);
+      router.push('/login')
+      // setTimeout(() => {
+      //   router.push(`/verify-email?email=${formData.email}`)
+      // }, 2000)
     })
     .catch(err => {
       console.log(err)
@@ -104,7 +110,7 @@ const SignUpPage = () => {
             { label: "First Name", name: "first_name", type: "text" },
             { label: "Last Name", name: "last_name", type: "text" },
             { label: "City", name: "city", type: "text" },
-            { label: "State", name: "state", type: "text" },
+            { label: "Country", name: "country", type: "text" },
             { label: "Address", name: "address", type: "text" },
             { label: "Password", name: "password", type: "password" },
             { label: "Confirm Password", name: "confirm_password", type: "password" },
@@ -123,6 +129,7 @@ const SignUpPage = () => {
           ))}
 
           {error && <Error error={error} />}
+          {successMessage && <p className="text-green-500">{successMessage}</p>}
 
           <button
             type="submit"
